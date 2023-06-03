@@ -1,6 +1,11 @@
 const express = require("express");
 const app = express();
 const PORT = 3000;
+const exphbs = require("express-handlebars");
+
+app.engine("handlebars", exphbs.engine());
+app.set("view engine", "handlebars");
+
 const mongoose = require("mongoose");
 require("dotenv").config();
 mongoose.connect(process.env.MONGODB_URI);
@@ -13,7 +18,7 @@ db.once("open", () => {
 });
 
 app.get("/", (req, res) => {
-  res.send("h1");
+  res.render("index");
 });
 
 app.listen(PORT, () => {

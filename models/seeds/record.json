@@ -1,0 +1,22 @@
+{
+  "results": [
+    {
+      "name": "晚餐",
+      "date": "2023.4.1",
+      "amount": 100,
+      "category": "餐飲"
+    },
+    {
+      "name": "捷運",
+      "date": "2023.5.1",
+      "amount": 50,
+      "category": "交通"
+    },
+    {
+      "name": "薩爾達",
+      "date": "2023.5.10",
+      "amount": 1200,
+      "category": "娛樂"
+    }
+  ]
+}

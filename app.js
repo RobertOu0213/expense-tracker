@@ -18,13 +18,29 @@ app.get("/", (req, res) => {
     .catch((error) => console.log(error));
 });
 
-app.get("/new", (req, res) => {
+app.get("/records/new", (req, res) => {
   res.render("new");
 });
 
 app.post("/records", (req, res) => {
   const { name, date, category, amount } = req.body;
   return Record.create({ name, date, category, amount })
+    .then(() => res.redirect("/"))
+    .catch((error) => console.log(error));
+});
+
+app.get("/records/:id/edit", (req, res) => {
+  const _id = req.params.id;
+  return Record.findOne({ _id })
+    .lean()
+    .then((record) => res.render("edit", { record }))
+    .catch((error) => console.log(error));
+});
+
+app.post("/records/:id/edit", (req, res) => {
+  const _id = req.params.id;
+  return Record.findOneAndUpdate({ _id }, req.body)
+    .then((record) => record.save())
     .then(() => res.redirect("/"))
     .catch((error) => console.log(error));
 });

@@ -1,0 +1,82 @@
+<form action="/records/{{record._id}}/edit" method="POST" class="mt-3">
+  <div class="col-md-4 m-auto">
+
+    <div class="row mb-3">
+      <label
+        class="col-sm-2 col-form-label"
+        style="font-size: 1px"
+      >*必填欄位</label>
+      <div class="col-sm-10 align-self-end">
+        <h5 style="text-align: center">請修改你的支出</h5>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="name" class="col-sm-2 col-form-label">名稱*
+        <span>:</span></label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          name="name"
+          class="form-control"
+          id="name"
+          value="{{record.name}}"
+        />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="date" class="col-sm-2 col-form-label">日期*
+        <span>:</span></label>
+      <div class="col-sm-10">
+        <input
+          type="date"
+          name="date"
+          class="form-control"
+          id="date"
+          value="{{record.date}}"
+        />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="category" class="col-sm-2 col-form-label">類別*
+        <span>:</span></label>
+      <div class="col-sm-10">
+        <input
+          list="categories"
+          class="form-control"
+          name="category"
+          id="category"
+          value="{{record.category}}"
+        />
+        <datalist id="categories">
+          <option>家居物業</option>
+          <option>交通出行</option>
+          <option>休閒娛樂</option>
+          <option>餐飲食品</option>
+          <option>其他</option>
+        </datalist>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="amount" class="col-sm-2 col-form-label">金額*
+        <span>:</span></label>
+      <div class="col-sm-10">
+        <input
+          type="number"
+          name="amount"
+          class="form-control"
+          id="amount"
+          value="{{record.amount}}"
+        />
+      </div>
+    </div>
+
+    <div class="mt-5" style="text-align: center">
+      <button type="submit" style="width: 300px">送出</button>
+    </div>
+
+  </div>
+</form>

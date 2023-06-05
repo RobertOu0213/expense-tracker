@@ -3,6 +3,7 @@ const app = express();
 const PORT = 3000;
 const exphbs = require("express-handlebars");
 const Record = require("./models/record");
+const methodOverride = require("method-override");
 require("./config/mongoose");
 
 app.engine("handlebars", exphbs.engine());
@@ -10,6 +11,9 @@ app.set("view engine", "handlebars");
 
 //body parser
 app.use(express.urlencoded({ extended: true }));
+
+//method override
+app.use(methodOverride('_method'))
 
 app.get("/", (req, res) => {
   Record.find()
@@ -37,7 +41,7 @@ app.get("/records/:id/edit", (req, res) => {
     .catch((error) => console.log(error));
 });
 
-app.post("/records/:id/edit", (req, res) => {
+app.put("/records/:id", (req, res) => {
   const _id = req.params.id;
   return Record.findOneAndUpdate({ _id }, req.body)
     .then((record) => record.save())
@@ -45,7 +49,7 @@ app.post("/records/:id/edit", (req, res) => {
     .catch((error) => console.log(error));
 });
 
-app.post("/records/:id/delete", (req, res) => {
+app.delete("/records/:id", (req, res) => {
   const _id = req.params.id;
   return Record.findOneAndRemove({ _id })
     .then(() => res.redirect("/"))

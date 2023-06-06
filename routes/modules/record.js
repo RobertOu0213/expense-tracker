@@ -1,14 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const Record = require("../../models/record");
+const Category = require("../../models/category");
 
-router.get("/records/new", (req, res) => {
+router.get("/new", (req, res) => {
   res.render("new");
 });
 
 router.post("/", (req, res) => {
-  const { name, date, category, amount } = req.body;
-  return Record.create({ name, date, category, amount })
+  const { name, date, amount } = req.body;
+  return Record.create({ name, date, amount })
     .then(() => res.redirect("/"))
     .catch((error) => console.log(error));
 });

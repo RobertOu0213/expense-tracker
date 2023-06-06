@@ -5,6 +5,16 @@ const categorySchema = new Schema({
     type: String,
     required: true,
   },
+  icon: {
+    type: String,
+    required: true,
+  },
+  record: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Record",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Category", categorySchema);

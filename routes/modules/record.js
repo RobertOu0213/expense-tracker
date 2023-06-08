@@ -8,10 +8,17 @@ router.get("/new", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const { name, date, amount } = req.body;
-  return Record.create({ name, date, amount })
-    .then(() => res.redirect("/"))
-    .catch((error) => console.log(error));
+  const record = req.body;
+  Category.findOne({ name: record.categoryId }).then((category) => {
+    record.categoryId = category._id;
+    Record.create(record)
+      .then((record) => {
+        category.record.push(record._id);
+        category.save();
+      })
+      .then(() => res.redirect("/"))
+      .catch((error) => console.log(error));
+  });
 });
 
 router.get("/:id/edit", (req, res) => {

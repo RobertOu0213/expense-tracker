@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Record = require("../../models/record");
-const recordList = require("./record.json").results;
+const Category = require("../category");
 require("dotenv").config();
 
 mongoose.connect(process.env.MONGODB_URI);
@@ -12,8 +12,33 @@ db.on("error", () => {
 });
 
 db.once("open", () => {
-  Record.create(recordList).then(() => {
-    console.log("done");
-    process.exit();
-  });
+  createRecords();
+  console.log("done");
+  // process.exit();
 });
+
+function createRecords() {
+  Category.find()
+    .lean()
+    .then((categories) => {
+      const categoriesId = [];
+      categories.forEach((category) => categoriesId.push(category._id));
+      return categoriesId;
+    })
+    .then((id) => {
+      for (let i = 0; i < 5; i++) {
+        Record.create({
+          name: `record-${i}`,
+          date: `2023-01-1${i}`,
+          amount: 100 * (i + 10),
+          categoryId: id[i],
+        }).then((record) => {
+          Category.findById(id[i]).then((category) => {
+            category.record.push(record._id);
+            category.save();
+          });
+        });
+      }
+    })
+    .catch((error) => console.log(error));
+}

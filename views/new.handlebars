@@ -15,7 +15,13 @@
       <label for="name" class="col-sm-2 col-form-label">名稱*
         <span>:</span></label>
       <div class="col-sm-10">
-        <input type="text" name="name" class="form-control" id="name" />
+        <input
+          type="text"
+          name="name"
+          class="form-control"
+          id="name"
+          required
+        />
       </div>
     </div>
 
@@ -23,7 +29,13 @@
       <label for="date" class="col-sm-2 col-form-label">日期*
         <span>:</span></label>
       <div class="col-sm-10">
-        <input type="date" name="date" class="form-control" id="date" />
+        <input
+          type="date"
+          name="date"
+          class="form-control"
+          id="date"
+          required
+        />
       </div>
     </div>
 
@@ -31,19 +43,24 @@
       <label for="category" class="col-sm-2 col-form-label">類別*
         <span>:</span></label>
       <div class="col-sm-10">
-        <input
-          list="categories"
-          class="form-control"
-          name="categoryId"
-          id="category"
-        />
-        <datalist id="categories">
+
+        <select class="form-control" name="categoryId" id="category" required>
+          <option disabled selected>請選擇類別</option>
           <option>家居物業</option>
           <option>交通出行</option>
           <option>休閒娛樂</option>
           <option>餐飲食品</option>
           <option>其他</option>
-        </datalist>
+        </select>
+        {{! <input
+          list="categories"
+          class="form-control"
+          name="categoryId"
+          id="category"
+        /> }}
+        {{! <datalist id="categories"> }}
+
+        {{! </datalist> }}
       </div>
     </div>
 
@@ -51,7 +68,13 @@
       <label for="amount" class="col-sm-2 col-form-label">金額*
         <span>:</span></label>
       <div class="col-sm-10">
-        <input type="number" name="amount" class="form-control" id="amount" />
+        <input
+          type="number"
+          name="amount"
+          class="form-control"
+          id="amount"
+          required
+        />
       </div>
     </div>
 

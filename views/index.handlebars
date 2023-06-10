@@ -1,6 +1,6 @@
 <div class="d-flex flex-row col-md-7 m-auto mt-5">
   <h5>總金額: </h5>
-  <h1 class="ms-5">100,000</h1>
+  <h1 class="ms-5">{{totalAmount}}</h1>
 </div>
 
 <ul class="list-group mt-3">
@@ -10,8 +10,9 @@
         <div class="d-flex">
           <div class="d-flex flex-row me-auto">
             <div class="align-self-center me-2">
-              <i class="fa-solid fa-house fa-lg"></i>
+              {{{this.categoryId.icon}}}
             </div>
+
             <div class="d-flex flex-column">
               <h4 style="display: inline">
                 {{this.name}}

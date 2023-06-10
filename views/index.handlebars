@@ -1,3 +1,24 @@
+<form class="d-flex flex-row col-md-7 m-auto mt-4" action="/search">
+
+  <select
+    class="form-control me-2"
+    style="width:200px"
+    name="categoryId"
+    id="category"
+    required
+  >
+    <option value="" disabled selected hidden>類別</option>
+    <option value="家居物業">家居物業</option>
+    <option value="交通出行">交通出行</option>
+    <option value="休閒娛樂">休閒娛樂</option>
+    <option value="餐飲食品">餐飲食品</option>
+    <option value="其他">其他</option>
+  </select>
+
+  <button class="form-control" type="submit" style="width:80px">送出</button>
+
+</form>
+
 <div class="d-flex flex-row col-md-7 m-auto mt-5">
   <h5>總金額: </h5>
   <h1 class="ms-5">{{totalAmount}}</h1>

@@ -1,13 +1,13 @@
 <form action="/records" method="POST" class="mt-3">
   <div class="col-md-4 m-auto">
 
-    <div class="row mb-3">
+    <div class="d-flex flex-row mb-5">
       <label
-        class="col-sm-2 col-form-label"
+        class="col-sm-3 col-form-label"
         style="font-size: 1px"
       >*必填欄位</label>
       <div class="col-sm-10 align-self-end">
-        <h5 style="text-align: center">請輸入你的支出</h5>
+        <h5 class="ms-5">請輸入你的支出</h5>
       </div>
     </div>
 
@@ -45,22 +45,14 @@
       <div class="col-sm-10">
 
         <select class="form-control" name="categoryId" id="category" required>
-          <option disabled selected>請選擇類別</option>
+          <option disabled selected hidden>請選擇類別</option>
           <option>家居物業</option>
           <option>交通出行</option>
           <option>休閒娛樂</option>
           <option>餐飲食品</option>
           <option>其他</option>
         </select>
-        {{! <input
-          list="categories"
-          class="form-control"
-          name="categoryId"
-          id="category"
-        /> }}
-        {{! <datalist id="categories"> }}
 
-        {{! </datalist> }}
       </div>
     </div>
 

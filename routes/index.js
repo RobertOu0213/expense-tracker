@@ -5,8 +5,8 @@ const record = require("./modules/record");
 const user = require("./modules/user");
 const { authenticator } = require("../middleware/auth");
 
-router.use("/records", authenticator, record);
+router.use("/records", record);
 router.use("/users", user);
-router.use("/", authenticator, home);
+router.use("/", home);
 
 module.exports = router;

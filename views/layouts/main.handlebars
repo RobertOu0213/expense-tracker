@@ -18,9 +18,10 @@
   <body>
     <nav class="navbar navbar-light bg-light">
       <div class="container-fluid">
-        <a href="/" class="navbar-brand">家庭記帳本</a>
-        
-        {{#if req.isAuthenticated}}
+        <a href="/" class="navbar-brand">{{#if isAuthenticated}}
+            {{user.name}}'s{{/if}}家庭記帳本</a>
+
+        {{#if isAuthenticated}}
           <a href="/users/logout" class="btn btn-outline-success">登出</a>
         {{else}}
           <a href="/users/login" class="btn btn-outline-success">登入</a>

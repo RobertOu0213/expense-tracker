@@ -2,8 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Record = require("../../models/record");
 const Category = require("../../models/category");
-// const record = require("../../models/record");
-// const category = require("../../models/category");
 
 router.get("/new", (req, res) => {
   res.render("new");
@@ -31,7 +29,6 @@ router.get("/:id/edit", (req, res) => {
     .lean()
     .then((record) => {
       res.render("edit", { record });
-      
     })
     .catch((error) => console.log(error));
 

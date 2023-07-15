@@ -14,7 +14,7 @@ db.on("error", () => {
 db.once("open", () => {
   createRecords();
   console.log("done");
-  // process.exit();
+  process.exit();
 });
 
 function createRecords() {

@@ -18,11 +18,12 @@ router.get("/", (req, res) => {
 
 router.get("/search", (req, res) => {
   const categoryId = req.query.categoryId;
+  const userId = req.user._id;
   let totalAmount = 0;
 
   if (categoryId) {
     Category.findOne({ name: categoryId }).then((categories) => {
-      Record.find({ categoryId: categories._id })
+      Record.find({ categoryId: categories._id, userId })
         .populate("categoryId")
         .lean()
         .then((records) => {

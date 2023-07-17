@@ -1,12 +1,17 @@
 const express = require("express");
 const app = express();
 const session = require("express-session");
-const PORT = 3000;
 const exphbs = require("express-handlebars");
 const methodOverride = require("method-override");
 const usePassport = require("./config/passport");
 const routes = require("./routes/index");
 const flash = require("connect-flash");
+
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
+const PORT = process.env.PORT;
 
 require("./config/mongoose");
 
@@ -15,7 +20,7 @@ app.set("view engine", "handlebars");
 
 app.use(
   session({
-    secret: "ThisIsAnApple",
+    secret: "process.env.SESSION_SECRET",
     resave: false,
     saveUninitialized: true,
   })

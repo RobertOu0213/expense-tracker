@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Record = require("../../models/record");
 const Category = require("../../models/category");
+const dayjs = require("dayjs");
 
 router.get("/", (req, res) => {
   const userId = req.user._id;
@@ -12,7 +13,20 @@ router.get("/", (req, res) => {
     .then((records) => {
       let totalAmount = 0;
       records.forEach((record) => (totalAmount += record.amount));
-      res.render("index", { totalAmount, records });
+
+      const data = records.map((record) => {
+        const { _id, name, date, amount } = record;
+        const formatDate = dayjs(date).format("YYYY/MM/DD");
+        return {
+          _id,
+          name,
+          date: formatDate,
+          amount,
+          icon: record.categoryId.icon,
+        };
+      });
+
+      res.render("index", { totalAmount, records: data });
     });
 });
 
@@ -28,7 +42,20 @@ router.get("/search", (req, res) => {
         .lean()
         .then((records) => {
           records.forEach((record) => (totalAmount += record.amount));
-          res.render("index", { totalAmount, records });
+          
+          const data = records.map((record) => {
+            const { _id, name, date, amount } = record;
+            const formatDate = dayjs(date).format("YYYY/MM/DD");
+            return {
+              _id,
+              name,
+              date: formatDate,
+              amount,
+              icon: record.categoryId.icon,
+            };
+          });
+
+          res.render("index", { totalAmount, records:data });
         });
     });
   }

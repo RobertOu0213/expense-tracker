@@ -3,7 +3,6 @@ const app = express();
 const session = require("express-session");
 const PORT = 3000;
 const exphbs = require("express-handlebars");
-const Record = require("./models/record");
 const methodOverride = require("method-override");
 const usePassport = require("./config/passport");
 const routes = require("./routes/index");

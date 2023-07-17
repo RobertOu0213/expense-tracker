@@ -35,7 +35,7 @@
           name="date"
           class="form-control"
           id="date"
-          value="{{record.date}}"
+          value="{{formatDate}}"
           required
         />
       </div>
@@ -48,10 +48,8 @@
 
         <select class="form-control" name="categoryId" id="category" required>
           <option
-            value=""
-            disabled
             selected
-            hidden
+            value="{{record.categoryId.name}}"
           >{{record.categoryId.name}}</option>
           <option value="家居物業">家居物業</option>
           <option value="交通出行">交通出行</option>

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Record = require("../../models/record");
 const Category = require("../../models/category");
+const dayjs = require("dayjs");
 
 router.get("/new", (req, res) => {
   res.render("new");
@@ -9,7 +10,7 @@ router.get("/new", (req, res) => {
 
 router.post("/", (req, res) => {
   const record = req.body;
-  // console.log(record);
+
   Category.findOne({ name: record.categoryId }).then((category) => {
     record.categoryId = category._id;
     record.userId = req.user._id;
@@ -32,8 +33,8 @@ router.get("/:id/edit", (req, res) => {
     .populate("categoryId")
     .lean()
     .then((record) => {
-      res.render("edit", { record });
-      console.log(record);
+      const formatDate = dayjs(record.date).format("YYYY-MM-DD");
+      res.render("edit", { record, formatDate });
     })
     .catch((error) => console.log(error));
 });
@@ -57,7 +58,7 @@ router.put("/:id", (req, res) => {
     })
     .catch((error) => console.log(error));
 
-    //update record
+  //update record
   Category.findOne({ name: update.categoryId })
     .then((category) => {
       update.categoryId = category._id;

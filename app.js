@@ -7,9 +7,11 @@ const usePassport = require("./config/passport");
 const routes = require("./routes/index");
 const flash = require("connect-flash");
 
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
+// if (process.env.NODE_ENV !== "production") {
+//   require("dotenv").config();
+// }
+
+ require("dotenv").config();
 
 const PORT = process.env.PORT;
 

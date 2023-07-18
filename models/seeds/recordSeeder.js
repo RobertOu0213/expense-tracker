@@ -4,10 +4,12 @@ const Category = require("../category");
 const User = require("../user");
 const recordList = require("./record.json").results;
 const bcrypt = require("bcryptjs");
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
 
+// if (process.env.NODE_ENV !== "production") {
+//   require("dotenv").config();
+// }
+
+require("dotenv").config();
 
 mongoose.connect(process.env.MONGODB_URI);
 const db = mongoose.connection;
@@ -59,29 +61,3 @@ db.once("open", () => {
         });
     });
 });
-
-// function createRecords() {
-//   Category.find()
-//     .lean()
-//     .then((categories) => {
-//       const categoriesId = [];
-//       categories.forEach((category) => categoriesId.push(category._id));
-//       return categoriesId;
-//     })
-//     .then((id) => {
-//       for (let i = 0; i < 5; i++) {
-//         Record.create({
-//           name: `record-${i}`,
-//           date: `2023-01-1${i}`,
-//           amount: 100 * (i + 10),
-//           categoryId: id[i],
-//         }).then((record) => {
-//           Category.findById(id[i]).then((category) => {
-//             category.record.push(record._id);
-//             category.save();
-//           });
-//         });
-//       }
-//     })
-//     .catch((error) => console.log(error));
-// }

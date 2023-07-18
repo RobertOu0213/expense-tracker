@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 const Category = require("../../models/category");
 
-require("dotenv").config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 
 const CATEGORY = [
   ["家居物業", `<i class="fa-solid fa-house"></i>`],

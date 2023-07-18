@@ -4,7 +4,11 @@ const Category = require("../category");
 const User = require("../user");
 const recordList = require("./record.json").results;
 const bcrypt = require("bcryptjs");
-require("dotenv").config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
+
 mongoose.connect(process.env.MONGODB_URI);
 const db = mongoose.connection;
 

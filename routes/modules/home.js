@@ -25,7 +25,6 @@ router.get("/", (req, res) => {
           icon: record.categoryId.icon,
         };
       });
-
       res.render("index", { totalAmount, records: data });
     });
 });
@@ -42,7 +41,7 @@ router.get("/search", (req, res) => {
         .lean()
         .then((records) => {
           records.forEach((record) => (totalAmount += record.amount));
-          
+
           const data = records.map((record) => {
             const { _id, name, date, amount } = record;
             const formatDate = dayjs(date).format("YYYY/MM/DD");
@@ -55,7 +54,7 @@ router.get("/search", (req, res) => {
             };
           });
 
-          res.render("index", { totalAmount, records:data });
+          res.render("index", { totalAmount, records: data });
         });
     });
   }

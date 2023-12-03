@@ -19,7 +19,7 @@ require("./config/mongoose");
 
 app.engine("handlebars", exphbs.engine());
 app.set("view engine", "handlebars");
-
+app.use(express.static("public"));
 app.use(
   session({
     secret: "process.env.SESSION_SECRET",
